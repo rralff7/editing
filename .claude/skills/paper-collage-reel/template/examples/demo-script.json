@@ -1,0 +1,517 @@
+{
+  "meta": {
+    "title": "Demo - The Artist and the Machine",
+    "brand": "Your Brand",
+    "monogram": "YB",
+    "handle": "@yourbrand",
+    "backdrop": "court",
+    "seriesTags": [
+      {
+        "text": "Nova is the artist",
+        "bg": "mustard",
+        "color": "ink"
+      },
+      {
+        "text": "Titan is the machine",
+        "bg": "red"
+      }
+    ],
+    "note": "Fictional players and numbers. Replace everything when making a real reel."
+  },
+  "settings": {
+    "fps": 30
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "chrome": "minimal",
+      "vo": "Nova is the artist. Titan is the machine. Same sport, two ways to be great.",
+      "elements": [
+        {
+          "type": "tag",
+          "text": "Your Brand · Our claim",
+          "x": 70,
+          "y": 222,
+          "anim": "none"
+        },
+        {
+          "type": "portrait",
+          "src": "img/demo-a.png",
+          "block": "mustard",
+          "x": 70,
+          "y": 300,
+          "w": 430,
+          "h": 520,
+          "anim": "none",
+          "credit": "Placeholder art, CC0"
+        },
+        {
+          "type": "portrait",
+          "src": "img/demo-b.png",
+          "block": "red",
+          "x": 530,
+          "y": 300,
+          "w": 430,
+          "h": 520,
+          "anim": "none"
+        },
+        {
+          "type": "headline",
+          "x": 70,
+          "y": 870,
+          "size": 92,
+          "parts": [
+            {
+              "text": "Nova",
+              "cue": "Nova"
+            },
+            {
+              "text": "is the",
+              "cue": "is the"
+            },
+            {
+              "text": "artist.",
+              "bg": "mustard",
+              "cue": "artist"
+            },
+            {
+              "text": "Titan",
+              "cue": "Titan",
+              "br": true
+            },
+            {
+              "text": "is the",
+              "cue": "is the"
+            },
+            {
+              "text": "machine.",
+              "bg": "red",
+              "cue": "machine"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "two ways to be great",
+          "font": "hand",
+          "size": 46,
+          "color": "inkSoft",
+          "x": 90,
+          "y": 1250,
+          "rotate": -3,
+          "cue": "two ways"
+        }
+      ]
+    },
+    {
+      "id": "artist",
+      "chapter": {
+        "index": 1,
+        "total": 3,
+        "label": "How they play"
+      },
+      "vo": "The artist. A rival coach said she plays like a cheat code. And nobody scores more efficiently.",
+      "elements": [
+        {
+          "type": "headline",
+          "x": 70,
+          "y": 300,
+          "parts": [
+            {
+              "text": "The artist",
+              "bg": "mustard"
+            }
+          ],
+          "cue": "artist"
+        },
+        {
+          "type": "portrait",
+          "src": "img/demo-a.png",
+          "block": "mustard",
+          "name": "Nova Reyes",
+          "x": 70,
+          "y": 460,
+          "w": 380,
+          "h": 440,
+          "cue": "@start"
+        },
+        {
+          "type": "quote",
+          "text": "like a cheat code",
+          "by": "Rival coach · Mar 2026",
+          "accent": "on Nova",
+          "avatar": "img/demo-coach.jpg",
+          "x": 490,
+          "y": 590,
+          "w": 450,
+          "cue": "coach"
+        },
+        {
+          "type": "bars",
+          "x": 70,
+          "y": 1010,
+          "w": 640,
+          "cue": "nobody",
+          "items": [
+            {
+              "label": "True shooting · Nova",
+              "value": 0.642,
+              "display": ".642",
+              "color": "mustard"
+            },
+            {
+              "label": "League average",
+              "value": 0.571,
+              "display": ".571",
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "type": "stamp",
+          "text": "#1",
+          "sub": "all-time",
+          "x": 760,
+          "y": 1050,
+          "rotate": -8,
+          "cue": "efficiently"
+        }
+      ]
+    },
+    {
+      "id": "machine",
+      "chapter": {
+        "index": 1,
+        "total": 3,
+        "label": "How they play"
+      },
+      "vo": "The machine. His old trainer said: he runs like a freight train. His first scouting report said he was raw.",
+      "elements": [
+        {
+          "type": "headline",
+          "x": 70,
+          "y": 300,
+          "parts": [
+            {
+              "text": "The machine",
+              "bg": "red"
+            }
+          ],
+          "cue": "machine"
+        },
+        {
+          "type": "portrait",
+          "src": "img/demo-b.png",
+          "block": "red",
+          "name": "Titan Okafor",
+          "x": 70,
+          "y": 460,
+          "w": 380,
+          "h": 440,
+          "cue": "@start"
+        },
+        {
+          "type": "quote",
+          "text": "like a freight train",
+          "by": "Former trainer · 2024",
+          "accent": "on Titan",
+          "x": 490,
+          "y": 590,
+          "w": 450,
+          "cue": "runs"
+        },
+        {
+          "type": "note",
+          "title": "Scouting report · 2014",
+          "text": "Strong frame.\n==Raw. Very raw.==\nRuns through contact.",
+          "x": 490,
+          "y": 960,
+          "w": 450,
+          "rotate": -2,
+          "cue": "scouting",
+          "highlightCue": "raw"
+        }
+      ]
+    },
+    {
+      "id": "split",
+      "chapter": {
+        "index": 2,
+        "total": 3,
+        "label": "The numbers"
+      },
+      "vo": "The artist wins per minute. The machine wins the totals. Twelve thousand points. The most ever.",
+      "elements": [
+        {
+          "type": "card",
+          "x": 70,
+          "y": 300,
+          "w": 440,
+          "h": 1060,
+          "bg": "cream",
+          "kicker": "The artist wins",
+          "title": "Per minute",
+          "titleBg": "mustard",
+          "titleSize": 76,
+          "cue": "per minute"
+        },
+        {
+          "type": "card",
+          "x": 510,
+          "y": 300,
+          "w": 440,
+          "h": 1060,
+          "bg": "pink",
+          "kicker": "The machine wins",
+          "title": "Totals",
+          "titleBg": "red",
+          "titleSize": 76,
+          "tape": true,
+          "cue": "totals"
+        },
+        {
+          "type": "stat",
+          "x": 100,
+          "y": 500,
+          "value": "31.4",
+          "label": "Nova · pts / 36 min",
+          "color": "mustardDeep",
+          "size": 130,
+          "cue": "minute",
+          "delay": 0.3
+        },
+        {
+          "type": "stat",
+          "x": 540,
+          "y": 500,
+          "value": "12,480",
+          "label": "Titan · points",
+          "color": "redDeep",
+          "size": 130,
+          "note": "Regular season · demo data",
+          "cue": "twelve"
+        },
+        {
+          "type": "stamp",
+          "text": "Most ever",
+          "x": 560,
+          "y": 760,
+          "rotate": -5,
+          "cue": "most ever"
+        }
+      ]
+    },
+    {
+      "id": "war",
+      "chapter": {
+        "index": 3,
+        "total": 3,
+        "label": "The war"
+      },
+      "vo": "Then there's the war. For eight straight seasons, only these two won the title.",
+      "elements": [
+        {
+          "type": "headline",
+          "x": 70,
+          "y": 300,
+          "parts": [
+            {
+              "text": "The war"
+            }
+          ],
+          "cue": "war"
+        },
+        {
+          "type": "tag",
+          "text": "League MVP",
+          "bg": "lime",
+          "x": 400,
+          "y": 336,
+          "cue": "seasons"
+        },
+        {
+          "type": "card",
+          "x": 70,
+          "y": 470,
+          "w": 880,
+          "h": 520,
+          "bg": "white",
+          "tape": true,
+          "cue": "eight"
+        },
+        {
+          "type": "grid",
+          "x": 120,
+          "y": 530,
+          "cols": 4,
+          "cell": 150,
+          "gap": 56,
+          "shape": "circle",
+          "cue": "eight",
+          "staggerMs": 120,
+          "items": [
+            {
+              "label": "N",
+              "sub": "2018",
+              "fill": "mustard"
+            },
+            {
+              "label": "T",
+              "sub": "2019",
+              "fill": "red"
+            },
+            {
+              "label": "T",
+              "sub": "2020",
+              "fill": "red"
+            },
+            {
+              "label": "N",
+              "sub": "2021",
+              "fill": "mustard"
+            },
+            {
+              "label": "N",
+              "sub": "2022",
+              "fill": "mustard"
+            },
+            {
+              "label": "T",
+              "sub": "2023",
+              "fill": "red"
+            },
+            {
+              "label": "N",
+              "sub": "2024",
+              "fill": "mustard"
+            },
+            {
+              "label": "T",
+              "sub": "2025",
+              "fill": "red"
+            }
+          ]
+        },
+        {
+          "type": "stamp",
+          "text": "Nobody else",
+          "x": 560,
+          "y": 1010,
+          "rotate": 4,
+          "cue": "only"
+        }
+      ]
+    },
+    {
+      "id": "verdict",
+      "chapter": {
+        "index": 3,
+        "total": 3,
+        "label": "The war"
+      },
+      "vo": "Are they the same? No. Not twins. Mirrors. Artist or machine: who are you taking?",
+      "elements": [
+        {
+          "type": "headline",
+          "x": 70,
+          "y": 300,
+          "parts": [
+            {
+              "text": "Are they the same?"
+            }
+          ],
+          "cue": "@start",
+          "exitCue": "Not twins"
+        },
+        {
+          "type": "stamp",
+          "text": "No.",
+          "x": 800,
+          "y": 390,
+          "size": 70,
+          "rotate": 6,
+          "cue": "No",
+          "exitCue": "Not twins"
+        },
+        {
+          "type": "headline",
+          "x": 70,
+          "y": 300,
+          "parts": [
+            {
+              "text": "Not twins.",
+              "cue": "Not twins"
+            },
+            {
+              "text": "Mirrors.",
+              "bg": "lime",
+              "cue": "Mirrors"
+            }
+          ]
+        },
+        {
+          "type": "divider",
+          "x": 510,
+          "y": 520,
+          "h": 700,
+          "cue": "No"
+        },
+        {
+          "type": "portrait",
+          "src": "img/demo-a.png",
+          "block": "mustard",
+          "name": "The artist",
+          "x": 80,
+          "y": 640,
+          "w": 380,
+          "h": 440,
+          "cue": "Artist"
+        },
+        {
+          "type": "portrait",
+          "src": "img/demo-b.png",
+          "block": "red",
+          "name": "The machine",
+          "nameBg": "red",
+          "x": 590,
+          "y": 640,
+          "w": 380,
+          "h": 440,
+          "cue": "machine"
+        },
+        {
+          "type": "arrow",
+          "x": 560,
+          "y": 420,
+          "to": {
+            "x": 330,
+            "y": 640
+          },
+          "color": "mustardDeep",
+          "cue": "Mirrors",
+          "bend": 50
+        },
+        {
+          "type": "arrow",
+          "x": 760,
+          "y": 420,
+          "to": {
+            "x": 800,
+            "y": 640
+          },
+          "bend": -40,
+          "color": "redDeep",
+          "cue": "Mirrors"
+        },
+        {
+          "type": "vs",
+          "text": "?",
+          "x": 465,
+          "y": 1150,
+          "size": 110,
+          "cue": "who"
+        }
+      ]
+    }
+  ]
+}

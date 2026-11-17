@@ -1,0 +1,9 @@
+node_modules/
+out/
+work/
+__pycache__/
+*.pyc
+.DS_Store
+# raw downloads and generated audio stay local; commit scripts, script.json, facts.md, credits
+reels/*/public/vo_raw.mp3
+reels/*/assets/raw/
