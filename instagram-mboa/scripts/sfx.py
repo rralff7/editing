@@ -1,6 +1,8 @@
 """Synthétise le design sonore de la vidéo à partir d'une liste de repères (cues.json).
 Tous les sons sont générés ici : aucun droit d'auteur.
-Usage : python3 scripts/sfx.py cues.json duree_secondes sortie.wav
+Usage : python3 scripts/sfx.py cues.json duree_secondes sortie.wav [voix.json]
+voix.json (optionnel) : [{"file": "v1.wav", "t": 0.2}, ...] → la voix est mixée par-dessus,
+et les effets baissent automatiquement quand la voix parle.
 """
 import json, sys, wave
 import numpy as np
@@ -84,17 +86,40 @@ SOUNDS = {"tick": tick, "pop": pop, "whoosh": whoosh, "swipe": swipe, "key": key
 PAN = {"whoosh": (0.7, 1.0), "swipe": (1.0, 0.75), "key": (0.9, 1.0)}
 
 
+def load_mono48(path):
+    with wave.open(path) as w:
+        assert w.getframerate() == SR, path
+        x = np.frombuffer(w.readframes(w.getnframes()), dtype="<i2").astype(float) / 32768
+        if w.getnchannels() == 2:
+            x = x.reshape(-1, 2).mean(axis=1)
+    return x
+
+
 def main():
     cues = json.load(open(sys.argv[1]))
     dur = float(sys.argv[2])
-    out = np.zeros((int(dur * SR) + SR, 2))
+    n = int(dur * SR)
+    fx = np.zeros((n + SR, 2))
     for c in cues:
         s = SOUNDS[c["type"]]() * c.get("gain", 1)
         i = int(c["t"] * SR)
         l, r = PAN.get(c["type"], (1.0, 1.0))
-        out[i:i + len(s), 0] += s[: len(out) - i] * l
-        out[i:i + len(s), 1] += s[: len(out) - i] * r
-    out = out[: int(dur * SR)]
+        fx[i:i + len(s), 0] += s[: len(fx) - i] * l
+        fx[i:i + len(s), 1] += s[: len(fx) - i] * r
+    fx = fx[:n]
+    if len(sys.argv) > 4:
+        voice = np.zeros(n)
+        for v in json.load(open(sys.argv[4])):
+            x = load_mono48(v["file"])
+            i = int(v["t"] * SR)
+            voice[i:i + len(x)] += x[: n - i]
+        voice *= 0.5 / (np.abs(voice).max() + 1e-9)
+        env = np.convolve(np.abs(voice), np.ones(2400) / 2400, mode="same")
+        duck = 1 - 0.55 * np.clip(env / 0.05, 0, 1)
+        fx *= 0.32 / (np.abs(fx).max() + 1e-9)
+        out = fx * duck[:, None] + voice[:, None]
+    else:
+        out = fx
     out *= 0.89 / np.abs(out).max()
     pcm = (out * 32767).astype("<i2")
     with wave.open(sys.argv[3], "wb") as w:

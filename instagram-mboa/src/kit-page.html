@@ -6,9 +6,9 @@
   /* Mise en page : une colonne éditoriale de 1080px, sections empilées, même monde visuel que les posts (indigo ndop + or). */
   :root {
     color-scheme: dark;
-    --ink: #0A0F24; --ink-2: #111937; --ink-3: #1A2452;
-    --paper: #F3F1EC; --mute: #9AA3C2; --line: rgba(243, 241, 236, 0.12);
-    --gold: #F2B705; --gold-soft: rgba(242, 183, 5, 0.12); --green: #2FB36B; --red: #E5533D;
+    --ink: #010A18; --ink-2: #05172C; --ink-3: #0A2A4F;
+    --paper: #F4F9FC; --mute: #8FB4CF; --line: rgba(244, 249, 252, 0.12);
+    --gold: #00C8E6; --gold-soft: rgba(0, 200, 230, 0.12); --green: #2FB36B; --red: #E5533D;
     --display: "Inter", system-ui, -apple-system, sans-serif;
     --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
     --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -35,7 +35,7 @@
     -webkit-mask-image: radial-gradient(80% 90% at 100% 0%, #000, transparent); mask-image: radial-gradient(80% 90% at 100% 0%, #000, transparent); }
   .hero h1 { font-size: clamp(42px, 8vw, 92px); line-height: 0.98; font-weight: 800; letter-spacing: -0.045em; margin: 18px 0 22px; max-width: 900px; }
   .hero h1 em { font-size: 1.1em; }
-  .hero .lead { font-size: clamp(17px, 2.2vw, 20px); color: rgba(243, 241, 236, 0.84); max-width: 680px; }
+  .hero .lead { font-size: clamp(17px, 2.2vw, 20px); color: rgba(244, 249, 252, 0.84); max-width: 680px; }
   .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .stat { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 14px; background: var(--ink-2); }
   .stat b { font-variant-numeric: tabular-nums; }
@@ -58,7 +58,7 @@
   .week-title { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
   .week-title h3 { font-size: 24px; font-weight: 800; }
   .day { border: 1px solid var(--line); border-radius: 18px; background: var(--ink-2); margin-bottom: 10px; overflow: hidden; }
-  .day[open] { border-color: rgba(242, 183, 5, 0.45); }
+  .day[open] { border-color: rgba(0, 200, 230, 0.45); }
   .day summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 16px 20px; }
   .day summary::-webkit-details-marker { display: none; }
   .date { text-align: center; font-family: var(--mono); line-height: 1.1; }
@@ -68,7 +68,7 @@
   .sum-main h4 { font-size: 19px; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; margin-top: 6px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--mute); white-space: nowrap; }
-  .chip.type { color: var(--paper); border-color: rgba(243, 241, 236, 0.3); }
+  .chip.type { color: var(--paper); border-color: rgba(244, 249, 252, 0.3); }
   .sum-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
   .time { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; }
   .status { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
@@ -85,7 +85,7 @@
   .beats b { font-family: var(--mono); font-size: 12px; color: var(--gold); font-weight: 700; padding-top: 3px; font-variant-numeric: tabular-nums; }
   .caption { background: var(--ink); border: 1px solid var(--line); border-radius: 14px; padding: 16px; white-space: pre-wrap; font-size: 14.5px; line-height: 1.55; max-height: 340px; overflow: auto; }
   .caption .tags { color: var(--gold); display: block; margin-top: 12px; }
-  .note { font-size: 14.5px; color: rgba(243, 241, 236, 0.86); }
+  .note { font-size: 14.5px; color: rgba(244, 249, 252, 0.86); }
   .copy { align-self: flex-start; font: 700 13px var(--display); color: var(--ink); background: var(--gold); border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; }
   .copy:hover { filter: brightness(1.08); }
   .asset-row { grid-column: 1 / -1; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
@@ -113,9 +113,9 @@
 
   /* Profil */
   .profile-grid { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 44px; align-items: start; }
-  .phone { border: 1px solid var(--line); border-radius: 30px; background: #070B1C; padding: 22px 14px 14px; }
+  .phone { border: 1px solid var(--line); border-radius: 30px; background: #020814; padding: 22px 14px 14px; }
   .p-head { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; align-items: center; padding: 0 6px; }
-  .avatar { width: 72px; height: 72px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #2A3A80, #121A3B); border: 2px solid var(--gold); display: grid; place-items: center; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 30px; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #0A4A85, #06182E); border: 2px solid var(--gold); display: grid; place-items: center; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 30px; }
   .p-name { font-weight: 700; font-size: 14px; }
   .p-nums { display: flex; gap: 14px; font-size: 12px; color: var(--mute); margin-top: 4px; }
   .p-bio { white-space: pre-line; font-size: 13px; line-height: 1.45; padding: 12px 6px 4px; }
@@ -135,7 +135,7 @@
   .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 40px; }
   .rules div { padding: 16px 0; border-top: 1px solid var(--line); }
   .rules b { display: block; margin-bottom: 4px; }
-  .rules span { color: rgba(243, 241, 236, 0.82); font-size: 15px; }
+  .rules span { color: rgba(244, 249, 252, 0.82); font-size: 15px; }
   .dm pre { font-family: var(--mono); font-size: 13px; white-space: pre-wrap; line-height: 1.6; background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
   footer { padding-block: 40px 64px; border-top: 1px solid var(--line); color: var(--mute); font-size: 14px; }
   footer code { font-family: var(--mono); font-size: 12.5px; color: var(--paper); }
@@ -182,15 +182,15 @@
     <div class="video-grid">
       <video controls playsinline preload="metadata" poster="img/reels/cover-j01.jpg" src="video/reel-j01-3-secondes.mp4"></video>
       <div>
-        <div class="spec"><span class="chip type">36 s</span><span class="chip">1080 × 1920</span><span class="chip">30 i/s</span><span class="chip">H.264 + AAC</span><span class="chip">Effets sonores inclus</span></div>
+        <div class="spec"><span class="chip type">47 s</span><span class="chip">1080 × 1920</span><span class="chip">30 i/s</span><span class="chip">H.264 + AAC</span><span class="chip">Voix off française</span><span class="chip">Effets sonores</span></div>
         <div class="lbl" style="margin-bottom:6px">Pour la publier</div>
         <ol class="steps">
-          <li><span>Importe <code style="font-family:var(--mono);font-size:13px;word-break:break-all">reel-j01-3-secondes.mp4</code> comme Reel.</span></li>
-          <li><span>Ajoute un son tendance de la bibliothèque Instagram, à 10–15 % du volume : les effets sonores restent audibles.</span></li>
+          <li><span>Importe <code style="font-family:var(--mono);font-size:13px;word-break:break-all">reel-j01-3-secondes.mp4</code> comme Reel (voix incluse). Tu préfères ta propre voix ? Prends <code style="font-family:var(--mono);font-size:13px;word-break:break-all">reel-j01-3-secondes-sans-voix.mp4</code> et enregistre le texte ci-dessous dans CapCut.</span></li>
+          <li><span>Ajoute une musique tendance de la bibliothèque Instagram, à 5–10 % du volume, sous la voix.</span></li>
           <li><span>Choisis la couverture <code style="font-family:var(--mono);font-size:13px;word-break:break-all">cover-j01.png</code> (« Ajouter depuis la galerie »).</span></li>
           <li><span>Colle la légende du jour 1 et publie lundi à 19h30. Puis épingle le Reel sur ton profil.</span></li>
         </ol>
-        <details class="more"><summary>Voix off optionnelle, à enregistrer avec ta voix</summary><div class="vo" id="vo"></div></details>
+        <details class="more"><summary>Texte de la voix off</summary><div class="vo" id="vo"></div></details>
       </div>
     </div>
   </section>

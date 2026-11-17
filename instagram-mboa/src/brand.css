@@ -1,4 +1,4 @@
-/* Identité "Mboa Content" — indigo ndop, or du drapeau, typographie éditoriale.
+/* Identité "Mboa Content" — bleu nuit, cyan néon (d'après la référence fournie), motif ndop, typographie éditoriale.
    Partagée par les carrousels, les couvertures et la vidéo motion design. */
 
 @font-face {
@@ -33,13 +33,13 @@
 
 :root {
   /* Couleurs */
-  --ink: #0A0F24;        /* fond : indigo nuit (teinture ndop) */
-  --ink-2: #121A3B;      /* panneaux */
-  --ink-3: #1C2756;      /* panneaux actifs */
-  --paper: #F3F1EC;      /* texte principal */
-  --mute: #9AA3C2;       /* texte secondaire, gris teinté indigo */
-  --line: rgba(243, 241, 236, 0.14);
-  --gold: #F2B705;       /* accent unique : l'or du drapeau */
+  --ink: #010A18;        /* fond : bleu nuit */
+  --ink-2: #06182E;      /* panneaux */
+  --ink-3: #0A2A4F;      /* panneaux actifs */
+  --paper: #F4F9FC;      /* texte principal */
+  --mute: #8FB4CF;       /* texte secondaire, gris bleuté */
+  --line: rgba(244, 249, 252, 0.14);
+  --gold: #00C8E6;       /* accent unique : cyan néon (nom de variable historique) */
   --green: #2FB36B;      /* "après", positif */
   --red: #E5533D;        /* "avant", erreur */
 

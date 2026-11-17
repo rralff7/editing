@@ -38,7 +38,7 @@ L.push(`- **Lien** : ${PROFIL.lien}`, `- **Photo** : ${PROFIL.photo}`, "- **Stor
 L.push("- **Posts épinglés** :", ...PROFIL.epingles.map((e) => `  - ${e}`), "");
 L.push("## Règles du jeu", "", ...REGLES.map(([a, b]) => `- **${a}.** ${b}`), "");
 L.push("## Message à envoyer à ceux qui commentent « SCRIPT » (jour 9)", "", "```", DM_SCRIPT, "```", "");
-L.push("## Voix off optionnelle pour la vidéo du jour 1", "", "Enregistre-la avec ta propre voix dans CapCut, par-dessus la vidéo.", "", ...VO_J1.map(([t, v]) => `- **${t}** · ${v}`), "");
+L.push("## Texte de la voix off (vidéo du jour 1)", "", "La voix est déjà incluse (voix de synthèse gratuite Kokoro). Pour mettre ta propre voix, enregistre ce texte dans CapCut par-dessus `reel-j01-3-secondes-sans-voix.mp4`.", "", ...VO_J1.map(([t, v]) => `- **${t}** · ${v}`), "");
 
 writeFileSync(resolve(root, "CALENDRIER.md"), L.join("\n"));
 console.log("CALENDRIER.md écrit");

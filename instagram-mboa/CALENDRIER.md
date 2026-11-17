@@ -52,18 +52,18 @@ Couverture : `out/reels/cover-j01.png`
 
 **Hook**
 
-- Tu dis : (Vidéo sans voix, texte animé.) Option : enregistre la voix off fournie.
+- Tu dis : Ta vidéo a trois secondes pour survivre. (Voix off incluse.)
 - Texte à l'écran : Ta vidéo a 3 secondes pour survivre.
 - Visuel : Un compte à rebours 3, 2, 1 dans un cercle qui se vide.
 
 **Script**
 
 - **0–3 s** · Hook : « Ta vidéo a 3 secondes pour survivre » + compte à rebours.
-- **3–8 s** · Un téléphone affiche « Bonjour à tous, bienvenue sur ma page… » : le pouce scrolle, tampon « SCROLLÉ ».
-- **8–11 s** · Bascule : « Le problème n'est pas ton produit. C'est ta première phrase. »
-- **11–21 s** · La formule en 3 cartes : Sujet → Tension → Promesse.
-- **21–31 s** · Avant / Après avec la vendeuse de pagnes de Mboppi.
-- **31–36 s** · Appel : enregistre + partie 2 lundi. Fin sur fond vide pour que la vidéo boucle.
+- **3–10 s** · Un téléphone affiche « Bonjour à tous, bienvenue sur ma page… » : le pouce scrolle, tampon « SCROLLÉ ».
+- **10–14 s** · Bascule : « Le problème n'est pas ton produit. C'est ta première phrase. »
+- **15–25 s** · La formule en 3 cartes : Sujet → Tension → Promesse.
+- **25–39 s** · Avant / Après avec la vendeuse de pagnes de Mboppi.
+- **39–47 s** · Appel : enregistre + partie 2 lundi. Fin sur fond vide pour que la vidéo boucle.
 
 **Légende**
 
@@ -84,7 +84,7 @@ Enregistre cette vidéo pour ton prochain tournage. Partie 2 (les hooks visuels)
 
 **Story du jour.** Sondage : « Ta dernière vidéo commençait par « Bonjour à tous » ? Oui / Non », puis partage du Reel.
 
-**Production.** Vidéo fournie (36 s, avec effets sonores). Dans Instagram, ajoute un son tendance à 10–15 % du volume. Couverture : cover-j01.png. Épingle ce Reel en haut du profil.
+**Production.** Vidéo fournie (47 s) en deux versions : avec voix off française + effets sonores, ou effets seuls si tu veux poser ta propre voix. Ajoute une musique tendance à 5–10 % du volume. Couverture : cover-j01.png. Épingle ce Reel en haut du profil.
 
 **Technique.** Cadre en 3 étapes animé + boucle finale qui relance la vidéo (plus de revisionnages).
 
@@ -658,7 +658,7 @@ Douala · Yaoundé
 - **Les 30 premières minutes.** Reste disponible juste après chaque publication : réponds à chaque commentaire par une question pour relancer la discussion.
 - **Réponds en vidéo.** Quand un commentaire pose une bonne question, réponds-y avec un Reel (option « Répondre avec un Reel »). C'est une idée gratuite et un signal fort.
 - **5 hashtags maximum.** Instagram limite désormais les hashtags par publication. Choisis-en 3 à 5 précis, et mets tes mots-clés dans la première ligne de la légende : la recherche Instagram les lit.
-- **Son tendance à bas volume.** Ajoute un son tendance de la bibliothèque Instagram, volume 10 à 15 % sous ta voix. Pour la vidéo motion design, garde les effets sonores et ajoute la musique par-dessus.
+- **Son tendance à bas volume.** Ajoute un son tendance de la bibliothèque Instagram, volume 5 à 15 % sous ta voix. Pour la vidéo motion design, la voix et les effets sont déjà mixés : la musique passe dessous.
 - **Collabs locales.** Tague les commerçants que tu filmes et propose la fonction Collab : la vidéo s'affiche aussi chez eux.
 - **Recycle partout.** Chaque Reel part aussi en statut WhatsApp, sur TikTok et sur Facebook. Exporte sans filigrane.
 - **Ce qu'on mesure.** Dans les statistiques de chaque Reel : vues, taux de passage dans les 3 premières secondes, partages, enregistrements, abonnés gagnés. Le jour 14, tu compares.
@@ -685,13 +685,13 @@ APPEL (27–30 s) : Écris « ___ » sur WhatsApp.
 Envoie-moi ta version, je te fais un retour.
 ```
 
-## Voix off optionnelle pour la vidéo du jour 1
+## Texte de la voix off (vidéo du jour 1)
 
-Enregistre-la avec ta propre voix dans CapCut, par-dessus la vidéo.
+La voix est déjà incluse (voix de synthèse gratuite Kokoro). Pour mettre ta propre voix, enregistre ce texte dans CapCut par-dessus `reel-j01-3-secondes-sans-voix.mp4`.
 
 - **0–3 s** · Ta vidéo a trois secondes pour survivre.
-- **3–8 s** · Et la plupart des vendeurs les gâchent avec : « Bonjour à tous, bienvenue sur ma page. » Résultat ? On scrolle.
-- **8–11 s** · Le problème, ce n'est pas ton produit. C'est ta première phrase.
-- **11–21 s** · La formule, c'est trois temps. Un : le sujet, tu dis de quoi tu parles, tout de suite. Deux : la tension, tu ajoutes un « mais ». Trois : la promesse, tu dis ce qu'on gagne à rester.
-- **21–31 s** · Exemple. Avant : « Bonjour à tous, je vous présente mes nouveaux pagnes. » Après : « Ce pagne coûte huit mille francs à Mboppi… mais ce n'est pas pour ça que mes clientes reviennent. Regarde la finition. » Même produit. Autre première phrase.
-- **31–36 s** · Enregistre cette vidéo. La partie deux, sur les hooks visuels, arrive lundi. Abonne-toi pour ne pas la rater.
+- **3–10 s** · Et la plupart des vidéos commencent comme ça : « Bonjour à tous, bienvenue sur ma page… » Résultat ? Scrollé.
+- **10–14 s** · Le problème, ce n'est pas ton produit. C'est ta première phrase.
+- **15–25 s** · La formule tient en trois temps. Un : le sujet. Dis de quoi tu parles, tout de suite. Deux : la tension. Ajoute un « mais ». Trois : la promesse. Dis ce qu'on gagne à rester.
+- **25–39 s** · Exemple. Avant : « Bonjour à tous, aujourd'hui je vous présente mes nouveaux pagnes. » Après : « Ce pagne coûte huit mille francs, à Mboppi… mais ce n'est pas pour ça que mes clientes reviennent. Regarde la finition. » Même produit. Autre première phrase.
+- **39–47 s** · Enregistre cette vidéo. La partie deux, sur les hooks visuels, arrive lundi. Abonne-toi pour ne pas la rater.

@@ -1,4 +1,4 @@
-// Contenu des 4 carrousels. Syntaxe : *mot* = italique or, [mot] = emplacement à remplir.
+// Contenu des 4 carrousels. Syntaxe : *mot* = italique cyan, [mot] = emplacement à remplir.
 // HANDLE : mets ton @ ici (ex. "@tonnom") pour l'afficher en bas de chaque slide, puis relance le rendu.
 window.HANDLE = "";
 

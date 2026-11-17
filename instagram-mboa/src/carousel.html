@@ -9,11 +9,14 @@
   .slide {
     --k: 1;
     width: 1080px; height: 1350px; position: relative; overflow: hidden;
-    background: radial-gradient(130% 80% at 85% 0%, #16204A 0%, var(--ink) 60%);
+    background: radial-gradient(130% 80% at 85% 0%, #03336A 0%, transparent 60%), radial-gradient(90% 55% at 0% 85%, rgba(1,43,93,0.7) 0%, transparent 70%), var(--ink);
     padding: 80px 88px 92px; display: flex; flex-direction: column;
   }
   .slide > * { position: relative; z-index: 2; }
-  .slide > .ndop, .slide > .grain, .slide > .vignette, .slide > .bigseven { position: absolute; z-index: 1; }
+  .slide > .ndop, .slide > .grain, .slide > .vignette, .slide > .bigseven, .slide > .halo { position: absolute; z-index: 1; }
+  .halo { border-radius: 50%; border: 5px solid rgba(0,200,230,0.8); box-shadow: 0 0 60px rgba(0,200,230,0.5), inset 0 0 60px rgba(0,200,230,0.2); pointer-events: none; }
+  .cover .halo { width: 1150px; height: 1150px; right: -560px; top: -520px; }
+  .slide:not(.cover) .halo { width: 900px; height: 900px; right: -700px; bottom: -720px; opacity: 0.4; }
   .slide > .grain { z-index: 50; }
 
   header, footer {
@@ -22,12 +25,12 @@
     text-transform: uppercase; color: var(--mute);
   }
   header .brand { display: flex; align-items: center; gap: 16px; }
-  header .brand i { width: 14px; height: 14px; background: var(--gold); display: block; transform: rotate(45deg); }
+  header .brand i { width: 14px; height: 14px; background: var(--gold); display: block; transform: rotate(45deg); box-shadow: 0 0 14px rgba(0,200,230,0.9); }
   footer { text-transform: none; letter-spacing: 0.04em; }
   footer .next { color: var(--paper); display: flex; align-items: center; gap: 12px; }
   footer .next b { color: var(--gold); font-weight: 700; }
-  .progress { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: rgba(243,241,236,0.08); z-index: 3; }
-  .progress span { display: block; height: 100%; background: var(--gold); }
+  .progress { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: rgba(244,249,252,0.08); z-index: 3; }
+  .progress span { display: block; height: 100%; background: var(--gold); box-shadow: 0 0 18px rgba(0,200,230,0.9); }
 
   main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 44px; min-height: 0; }
 
@@ -36,19 +39,19 @@
   h1 em, h2 em { font-size: 1.1em; line-height: 0.8; letter-spacing: -0.01em; }
   h2 { font-weight: 800; font-size: calc(100px * var(--k)); line-height: 1.0; letter-spacing: -0.035em; text-wrap: balance; }
   .sub { font-size: 38px; line-height: 1.38; color: var(--mute); max-width: 860px; text-wrap: pretty; }
-  .body { font-size: calc(40px * var(--k)); line-height: 1.42; color: rgba(243,241,236,0.86); text-wrap: pretty; }
+  .body { font-size: calc(40px * var(--k)); line-height: 1.42; color: rgba(244,249,252,0.86); text-wrap: pretty; }
   .kicker { display: flex; flex-direction: column; gap: 22px; font-weight: 700; font-size: calc(44px * var(--k)); line-height: 1.22; color: var(--gold); letter-spacing: -0.015em; text-wrap: balance; }
-  .kicker::before { content: ""; width: 64px; height: 6px; background: var(--gold); display: block; }
+  .kicker::before { content: ""; width: 64px; height: 6px; background: var(--gold); display: block; box-shadow: 0 0 16px rgba(0,200,230,0.9); }
 
   /* Couverture */
   .cover main { justify-content: flex-end; gap: 36px; padding-bottom: 40px; }
   .cover .ndop { -webkit-mask-image: radial-gradient(70% 60% at 100% 0%, #000 0%, transparent 100%); opacity: 0.11; }
-  .bigseven { right: 130px; top: 30px; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 760px; line-height: 1; letter-spacing: -0.05em; }
+  .bigseven { right: 130px; top: 30px; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 760px; line-height: 1; letter-spacing: -0.05em; text-shadow: 0 0 70px rgba(0,200,230,0.55); }
   .visual { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
 
   .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; }
-  .tiles div { background: rgba(18,26,59,0.85); border: 2px solid var(--line); border-radius: 22px; padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 14px; min-height: 200px; }
-  .tiles div:nth-child(1) { border-color: var(--gold); }
+  .tiles div { background: rgba(6,24,46,0.85); border: 2px solid rgba(0,200,230,0.4); border-radius: 22px; padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 14px; min-height: 200px; }
+  .tiles div:nth-child(1) { border-color: var(--gold); box-shadow: 0 0 40px rgba(0,200,230,0.45); }
   .tiles b { font-family: var(--mono); font-size: 22px; color: var(--gold); letter-spacing: 0.1em; }
   .tiles span { font-size: 36px; font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; }
 
@@ -56,7 +59,7 @@
   .tl .ticks, .tl .labels { display: flex; font-family: var(--mono); font-size: 23px; color: var(--mute); letter-spacing: 0.06em; }
   .tl .bar { display: flex; height: 170px; gap: 6px; margin: 18px 0 22px; position: relative; }
   .tl .bar div { border-radius: 14px; background: var(--ink-3); border: 2px solid var(--line); }
-  .tl .bar div.hot { background: var(--gold); border-color: var(--gold); }
+  .tl .bar div.hot { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 40px rgba(0,200,230,0.6); }
   .tl .labels span { font-weight: 700; color: var(--paper); text-transform: uppercase; font-size: 21px; }
   .tl .labels span.hot { color: var(--gold); }
   .tl .playhead { position: absolute; top: -26px; bottom: -26px; width: 4px; background: var(--paper); left: 6.5%; border-radius: 4px; }
@@ -66,7 +69,7 @@
   .week .wrow { display: flex; justify-content: space-between; }
   .week .d { display: flex; flex-direction: column; align-items: center; gap: 18px; }
   .week .d span { font-family: var(--mono); font-weight: 700; font-size: 26px; color: var(--mute); }
-  .week .d i { width: 112px; height: 112px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; }
+  .week .d i { width: 112px; height: 112px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; box-shadow: 0 0 30px rgba(0,200,230,0.55); }
   .week .d i svg { width: 54px; height: 54px; }
   .week .cap { font-family: var(--mono); font-size: 24px; color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between; border-top: 2px solid var(--line); padding-top: 26px; }
   .week .cap b { color: var(--gold); }
@@ -76,24 +79,24 @@
   .item .rows { flex: 1; justify-content: center; }
   .measuring .item .rows { flex: none; }
   .item .top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .item .num { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 190px; line-height: 0.8; letter-spacing: -0.03em; }
+  .item .num { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 190px; line-height: 0.8; letter-spacing: -0.03em; text-shadow: 0 0 40px rgba(0,200,230,0.5); }
   .item .num small { font-family: var(--mono); font-style: normal; font-size: 26px; color: var(--mute); letter-spacing: 0.1em; margin-left: 22px; vertical-align: top; }
-  .tag { font-family: var(--mono); font-weight: 700; font-size: 24px; letter-spacing: 0.06em; color: var(--ink); background: var(--gold); padding: 14px 24px; border-radius: 999px; white-space: nowrap; margin-top: 10px; }
+  .tag { font-family: var(--mono); font-weight: 700; font-size: 24px; letter-spacing: 0.06em; color: var(--ink); background: var(--gold); padding: 14px 24px; border-radius: 999px; white-space: nowrap; margin-top: 10px; box-shadow: 0 0 34px rgba(0,200,230,0.5); }
   .item h2 { font-size: 96px; margin-top: -6px; }
   .statement main { gap: calc(44px * var(--k)); }
   .rows { display: flex; flex-direction: column; gap: calc(40px * var(--k)); }
   .row { display: flex; flex-direction: column; gap: 16px; }
   .lbl { font-family: var(--mono); font-weight: 500; font-size: 22px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
-  .formula { font-family: var(--mono); font-weight: 500; font-size: calc(35px * var(--k)); line-height: 1.45; background: rgba(18,26,59,0.9); border: 2px solid var(--line); border-radius: 22px; padding: 30px 36px; color: var(--paper); }
+  .formula { font-family: var(--mono); font-weight: 500; font-size: calc(35px * var(--k)); line-height: 1.45; background: rgba(6,24,46,0.9); border: 2px solid rgba(0,200,230,0.5); border-radius: 22px; padding: 30px 36px; box-shadow: 0 0 40px rgba(0,200,230,0.12), inset 0 0 30px rgba(0,200,230,0.06); color: var(--paper); }
   .quote { font-family: var(--serif); font-style: italic; font-size: calc(58px * var(--k)); line-height: 1.12; color: var(--paper); letter-spacing: -0.005em; text-wrap: pretty; }
   .quote::before { content: "« "; color: var(--gold); }
   .quote::after { content: " »"; color: var(--gold); }
   .quote.noq::before, .quote.noq::after { content: none; }
-  .rbody { font-size: calc(38px * var(--k)); line-height: 1.4; color: rgba(243,241,236,0.86); text-wrap: pretty; }
-  .tip { font-size: calc(36px * var(--k)); line-height: 1.4; background: rgba(242,183,5,0.1); border: 2px solid rgba(242,183,5,0.45); border-radius: 22px; padding: 28px 34px; color: var(--paper); }
+  .rbody { font-size: calc(38px * var(--k)); line-height: 1.4; color: rgba(244,249,252,0.86); text-wrap: pretty; }
+  .tip { font-size: calc(36px * var(--k)); line-height: 1.4; background: rgba(0,200,230,0.1); border: 2px solid rgba(0,200,230,0.45); border-radius: 22px; padding: 28px 34px; color: var(--paper); }
   .chips { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 12px; }
   .chips .c { display: inline-flex; align-items: center; gap: 12px; }
-  .chips .c > span { font-size: calc(31px * var(--k)); font-weight: 600; border: 2px solid var(--line); background: rgba(18,26,59,0.9); border-radius: 999px; padding: 14px 26px; }
+  .chips .c > span { font-size: calc(31px * var(--k)); font-weight: 600; border: 2px solid rgba(0,200,230,0.45); background: rgba(6,24,46,0.9); border-radius: 999px; padding: 14px 26px; }
   .chips i { font-style: normal; color: var(--gold); font-size: 34px; font-weight: 700; }
 
   /* Checklist / listes */
@@ -105,7 +108,7 @@
   .list .arrow { flex: none; color: var(--gold); font-weight: 800; width: 44px; }
   .list .dot { flex: none; width: 18px; height: 18px; background: var(--gold); transform: rotate(45deg); margin: 16px 12px 0 8px; }
   .note { font-size: 34px; line-height: 1.4; color: var(--mute); text-wrap: pretty; }
-  .lead { font-size: 40px; line-height: 1.38; color: rgba(243,241,236,0.86); }
+  .lead { font-size: 40px; line-height: 1.38; color: rgba(244,249,252,0.86); }
 
   /* Planning */
   .sched { display: flex; flex-direction: column; }
@@ -129,9 +132,9 @@
   .cta main { gap: 40px; }
   .acts { display: flex; flex-direction: column; gap: 30px; }
   .acts div { display: flex; align-items: center; gap: 32px; font-size: 39px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
-  .acts i { flex: none; width: 96px; height: 96px; border-radius: 50%; border: 3px solid var(--gold); display: grid; place-items: center; }
+  .acts i { flex: none; width: 96px; height: 96px; border-radius: 50%; border: 3px solid var(--gold); display: grid; place-items: center; box-shadow: 0 0 26px rgba(0,200,230,0.4), inset 0 0 18px rgba(0,200,230,0.15); }
   .acts i svg { width: 44px; height: 44px; }
-  .prompt { background: var(--gold); color: var(--ink); border-radius: 26px; padding: 34px 40px; display: flex; flex-direction: column; gap: 14px; }
+  .prompt { background: linear-gradient(135deg, #22D8F2, #00B4D8); box-shadow: 0 0 60px rgba(0,200,230,0.45); color: var(--ink); border-radius: 26px; padding: 34px 40px; display: flex; flex-direction: column; gap: 14px; }
   .prompt b { font-family: var(--mono); font-size: 22px; letter-spacing: 0.16em; text-transform: uppercase; }
   .prompt span { font-size: 40px; line-height: 1.25; font-weight: 700; letter-spacing: -0.015em; }
 </style>
@@ -143,9 +146,9 @@
 const qh = new URLSearchParams(location.search).get("handle");
 if (qh) window.HANDLE = qh;
 const ICON = {
-  save: '<svg viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>',
-  send: '<svg viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M21.5 2.5 10.5 13.5"/><path d="M21.5 2.5 14.5 21.5l-4-8-8-4z"/></svg>',
-  follow: '<svg viewBox="0 0 24 24" fill="none" stroke="#F2B705" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="7.5" r="4"/><path d="M2 21v-.5A6.5 6.5 0 0 1 8.5 14h1a6.5 6.5 0 0 1 6.5 6.5v.5"/><path d="M19.5 8v6M16.5 11h6"/></svg>',
+  save: '<svg viewBox="0 0 24 24" fill="none" stroke="#00C8E6" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>',
+  send: '<svg viewBox="0 0 24 24" fill="none" stroke="#00C8E6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M21.5 2.5 10.5 13.5"/><path d="M21.5 2.5 14.5 21.5l-4-8-8-4z"/></svg>',
+  follow: '<svg viewBox="0 0 24 24" fill="none" stroke="#00C8E6" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="7.5" r="4"/><path d="M2 21v-.5A6.5 6.5 0 0 1 8.5 14h1a6.5 6.5 0 0 1 6.5 6.5v.5"/><path d="M19.5 8v6M16.5 11h6"/></svg>',
   check: (c) => `<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`,
 };
 
@@ -168,7 +171,7 @@ function frame(c, i, n, cls, inner, extra = "") {
   const last = i === n - 1;
   const left = window.HANDLE ? window.HANDLE : c.series;
   return `<section class="slide ${cls}" data-file="${c.id}/${String(i + 1).padStart(2, "0")}.png">
-    ${extra}<div class="ndop"></div><div class="vignette"></div><div class="grain"></div>
+    ${extra}<div class="halo"></div><div class="ndop"></div><div class="vignette"></div><div class="grain"></div>
     <header><div class="brand"><i></i>${fr(c.label)}</div><div>${String(i + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}</div></header>
     <main>${inner}</main>
     <footer><div>${fr(left)}</div>${last ? "<div></div>" : `<div class="next">${i === 0 ? "Glisse" : "Suite"} <b>→</b></div>`}</footer>
@@ -193,7 +196,7 @@ function coverVisual(v) {
   if (v === "week") {
     const d = ["L", "M", "M", "J", "V", "S", "D"];
     return `<div class="visual"><div class="week">
-      <div class="wrow">${d.map((x) => `<div class="d"><i>${ICON.check("#0A0F24")}</i><span>${x}</span></div>`).join("")}</div>
+      <div class="wrow">${d.map((x) => `<div class="d"><i>${ICON.check("#010A18")}</i><span>${x}</span></div>`).join("")}</div>
       <div class="cap"><span>Cette semaine</span><b>7 / 7 vidéos publiées</b></div>
     </div></div>`;
   }
@@ -228,7 +231,7 @@ function render(c) {
           }</div>`).join("")}</div>`);
       case "checklist": {
         const b = s.bullets || "check";
-        const mark = b === "check" ? `<span class="box">${ICON.check("#F2B705")}</span>` : b === "arrow" ? '<span class="arrow">→</span>' : '<span class="dot"></span>';
+        const mark = b === "check" ? `<span class="box">${ICON.check("#00C8E6")}</span>` : b === "arrow" ? '<span class="arrow">→</span>' : '<span class="dot"></span>';
         return frame(c, i, n, "checklist", `
           <h2>${fmt(s.title)}</h2>
           ${s.lead ? `<p class="lead">${fmt(s.lead)}</p>` : ""}
