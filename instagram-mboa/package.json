@@ -1,0 +1,18 @@
+{
+  "name": "instagram-mboa",
+  "version": "1.0.0",
+  "description": "Kit Instagram 14 jours (FR, Cameroun) : carrousels, couvertures, vidéo motion design, calendrier.",
+  "scripts": {
+    "carrousels": "node scripts/render-carousels.mjs",
+    "couvertures": "node scripts/render-covers.mjs",
+    "video": "node scripts/render-video.mjs",
+    "calendrier": "node scripts/build-docs.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/instrument-serif": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.1",
+    "gsap": "^3.12.5"
+  }
+}

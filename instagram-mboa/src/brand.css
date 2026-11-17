@@ -1,0 +1,77 @@
+/* Identité "Mboa Content" — indigo ndop, or du drapeau, typographie éditoriale.
+   Partagée par les carrousels, les couvertures et la vidéo motion design. */
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  unicode-range: U+0100-024F, U+1E00-1EFF;
+  src: url("../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-ext-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 500;
+  src: url("../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  src: url("../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2") format("woff2");
+}
+
+:root {
+  /* Couleurs */
+  --ink: #0A0F24;        /* fond : indigo nuit (teinture ndop) */
+  --ink-2: #121A3B;      /* panneaux */
+  --ink-3: #1C2756;      /* panneaux actifs */
+  --paper: #F3F1EC;      /* texte principal */
+  --mute: #9AA3C2;       /* texte secondaire, gris teinté indigo */
+  --line: rgba(243, 241, 236, 0.14);
+  --gold: #F2B705;       /* accent unique : l'or du drapeau */
+  --green: #2FB36B;      /* "après", positif */
+  --red: #E5533D;        /* "avant", erreur */
+
+  /* Typo */
+  --display: "Inter Display", "Inter", system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--ink); color: var(--paper); }
+body { font-family: var(--display); -webkit-font-smoothing: antialiased; }
+
+em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--gold); letter-spacing: -0.01em; }
+.slot { color: var(--gold); }
+
+/* Motif ndop : losanges imbriqués et points, comme les tissus royaux des Grassfields */
+.ndop {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23F3F1EC' stroke-width='2'%3E%3Cpath d='M0 80 L80 0 L160 80 L80 160 Z'/%3E%3Cpath d='M40 80 L80 40 L120 80 L80 120 Z'/%3E%3Cpath d='M0 0 L20 20 M160 0 L140 20 M0 160 L20 140 M160 160 L140 140'/%3E%3C/g%3E%3Cg fill='%23F3F1EC'%3E%3Ccircle cx='80' cy='80' r='5'/%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Ccircle cx='160' cy='0' r='5'/%3E%3Ccircle cx='0' cy='160' r='5'/%3E%3Ccircle cx='160' cy='160' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.07;
+}
+
+/* Grain photo très léger pour l'aspect premium */
+.grain {
+  position: absolute; inset: 0; pointer-events: none; z-index: 50;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.06; mix-blend-mode: overlay;
+}
+
+.vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+}

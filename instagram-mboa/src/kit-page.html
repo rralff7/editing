@@ -1,0 +1,344 @@
+<title>Kit Instagram Mboa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+  /* Mise en page : une colonne éditoriale de 1080px, sections empilées, même monde visuel que les posts (indigo ndop + or). */
+  :root {
+    color-scheme: dark;
+    --ink: #0A0F24; --ink-2: #111937; --ink-3: #1A2452;
+    --paper: #F3F1EC; --mute: #9AA3C2; --line: rgba(243, 241, 236, 0.12);
+    --gold: #F2B705; --gold-soft: rgba(242, 183, 5, 0.12); --green: #2FB36B; --red: #E5533D;
+    --display: "Inter", system-ui, -apple-system, sans-serif;
+    --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  body { background: var(--ink); color: var(--paper); font-family: var(--display); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--gold); }
+  a { color: var(--gold); }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .eyebrow { font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+  .lbl { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.03em; }
+  h2 { font-size: clamp(30px, 5vw, 48px); line-height: 1.05; font-weight: 800; }
+  h2 em { font-size: 1.1em; }
+  section { padding-block: 64px; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; max-width: 720px; }
+  .sec-head p { color: var(--mute); }
+
+  /* Hero */
+  .hero { padding-block: 56px 48px; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; inset: 0 0 auto auto; width: 70%; height: 100%; pointer-events: none; opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23F3F1EC' stroke-width='2'%3E%3Cpath d='M0 80 L80 0 L160 80 L80 160 Z'/%3E%3Cpath d='M40 80 L80 40 L120 80 L80 120 Z'/%3E%3C/g%3E%3Ccircle cx='80' cy='80' r='5' fill='%23F3F1EC'/%3E%3C/svg%3E");
+    -webkit-mask-image: radial-gradient(80% 90% at 100% 0%, #000, transparent); mask-image: radial-gradient(80% 90% at 100% 0%, #000, transparent); }
+  .hero h1 { font-size: clamp(42px, 8vw, 92px); line-height: 0.98; font-weight: 800; letter-spacing: -0.045em; margin: 18px 0 22px; max-width: 900px; }
+  .hero h1 em { font-size: 1.1em; }
+  .hero .lead { font-size: clamp(17px, 2.2vw, 20px); color: rgba(243, 241, 236, 0.84); max-width: 680px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .stat { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 14px; background: var(--ink-2); }
+  .stat b { font-variant-numeric: tabular-nums; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); flex: none; }
+  .dot.todo { background: transparent; border: 2px solid var(--mute); }
+  nav.jump { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 30px; font-family: var(--mono); font-size: 13px; }
+  nav.jump a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+  nav.jump a:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Piliers & emprunts */
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px; }
+  .deflist { display: flex; flex-direction: column; }
+  .deflist div { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+  .deflist div:first-child { border-top: 1px solid var(--line); }
+  .deflist b { font-weight: 700; }
+  .deflist span { color: var(--mute); font-size: 15px; }
+
+  /* Calendrier */
+  .week { margin-bottom: 40px; }
+  .week-title { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+  .week-title h3 { font-size: 24px; font-weight: 800; }
+  .day { border: 1px solid var(--line); border-radius: 18px; background: var(--ink-2); margin-bottom: 10px; overflow: hidden; }
+  .day[open] { border-color: rgba(242, 183, 5, 0.45); }
+  .day summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 16px 20px; }
+  .day summary::-webkit-details-marker { display: none; }
+  .date { text-align: center; font-family: var(--mono); line-height: 1.1; }
+  .date small { display: block; font-size: 11px; letter-spacing: 0.14em; color: var(--mute); text-transform: uppercase; }
+  .date b { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 40px; color: var(--gold); line-height: 1; margin: 2px 0; }
+  .sum-main { min-width: 0; }
+  .sum-main h4 { font-size: 19px; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; margin-top: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--mute); white-space: nowrap; }
+  .chip.type { color: var(--paper); border-color: rgba(243, 241, 236, 0.3); }
+  .sum-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .time { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .status { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
+  .status.pret { background: var(--gold); color: var(--ink); }
+  .status.tourner { border: 1px solid var(--line); color: var(--mute); }
+  .chev { width: 18px; height: 18px; transition: transform 0.2s; color: var(--mute); }
+  .day[open] .chev { transform: rotate(180deg); }
+  .day-body { padding: 4px 20px 24px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 28px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .block { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .hookline { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px; font-size: 15px; padding: 6px 0; }
+  .hookline .lbl { padding-top: 3px; }
+  .beats { display: flex; flex-direction: column; }
+  .beats div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .beats b { font-family: var(--mono); font-size: 12px; color: var(--gold); font-weight: 700; padding-top: 3px; font-variant-numeric: tabular-nums; }
+  .caption { background: var(--ink); border: 1px solid var(--line); border-radius: 14px; padding: 16px; white-space: pre-wrap; font-size: 14.5px; line-height: 1.55; max-height: 340px; overflow: auto; }
+  .caption .tags { color: var(--gold); display: block; margin-top: 12px; }
+  .note { font-size: 14.5px; color: rgba(243, 241, 236, 0.86); }
+  .copy { align-self: flex-start; font: 700 13px var(--display); color: var(--ink); background: var(--gold); border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; }
+  .copy:hover { filter: brightness(1.08); }
+  .asset-row { grid-column: 1 / -1; display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+  .asset-row img { width: 150px; flex: none; border-radius: 10px; scroll-snap-align: start; border: 1px solid var(--line); }
+  .asset-note { grid-column: 1 / -1; font-size: 14px; color: var(--mute); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .asset-note code { font-family: var(--mono); font-size: 12px; color: var(--paper); background: var(--ink); padding: 2px 6px; border-radius: 6px; }
+
+  /* Vidéo */
+  .video-grid { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .video-grid video { width: 100%; aspect-ratio: 9 / 16; border-radius: 22px; background: #000; border: 1px solid var(--line); display: block; }
+  .spec { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  ol.steps { padding-left: 0; list-style: none; counter-reset: s; display: flex; flex-direction: column; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  ol.steps li::before { content: counter(s); font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 26px; line-height: 1; }
+  .vo div { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .vo b { font-family: var(--mono); font-size: 12px; color: var(--gold); padding-top: 3px; }
+  details.more summary { cursor: pointer; font-weight: 700; color: var(--gold); padding: 10px 0; }
+
+  /* Carrousels */
+  .car { margin-bottom: 44px; }
+  .car-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  .car-head h3 { font-size: 22px; font-weight: 800; }
+  .strip { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; }
+  .strip img { width: min(68vw, 300px); aspect-ratio: 4 / 5; flex: none; border-radius: 12px; scroll-snap-align: start; border: 1px solid var(--line); background: var(--ink-2); }
+
+  /* Profil */
+  .profile-grid { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 44px; align-items: start; }
+  .phone { border: 1px solid var(--line); border-radius: 30px; background: #070B1C; padding: 22px 14px 14px; }
+  .p-head { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; align-items: center; padding: 0 6px; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #2A3A80, #121A3B); border: 2px solid var(--gold); display: grid; place-items: center; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 30px; }
+  .p-name { font-weight: 700; font-size: 14px; }
+  .p-nums { display: flex; gap: 14px; font-size: 12px; color: var(--mute); margin-top: 4px; }
+  .p-bio { white-space: pre-line; font-size: 13px; line-height: 1.45; padding: 12px 6px 4px; }
+  .p-hl { display: flex; gap: 12px; padding: 12px 6px 16px; overflow-x: auto; }
+  .p-hl figure { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: none; width: 58px; }
+  .p-hl img { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--line); }
+  .p-hl figcaption { font-size: 10px; color: var(--mute); text-align: center; line-height: 1.2; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border-radius: 0 0 18px 18px; overflow: hidden; }
+  .tile { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--ink-2); }
+  .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tile .pin { position: absolute; top: 6px; right: 6px; width: 16px; height: 16px; }
+  .tile .kind { position: absolute; top: 6px; right: 6px; width: 15px; height: 15px; opacity: 0.9; }
+  .bio-card { border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--ink-2); margin-bottom: 12px; }
+  .bio-card pre { font-family: var(--display); white-space: pre-wrap; font-size: 15px; }
+
+  /* Règles */
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0 40px; }
+  .rules div { padding: 16px 0; border-top: 1px solid var(--line); }
+  .rules b { display: block; margin-bottom: 4px; }
+  .rules span { color: rgba(243, 241, 236, 0.82); font-size: 15px; }
+  .dm pre { font-family: var(--mono); font-size: 13px; white-space: pre-wrap; line-height: 1.6; background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  footer { padding-block: 40px 64px; border-top: 1px solid var(--line); color: var(--mute); font-size: 14px; }
+  footer code { font-family: var(--mono); font-size: 12.5px; color: var(--paper); }
+
+  @media (max-width: 760px) {
+    section { padding-block: 48px; }
+    .day summary { grid-template-columns: 54px minmax(0, 1fr); gap: 14px; padding: 14px; }
+    .sum-meta { grid-column: 2; flex-direction: row; align-items: center; justify-content: flex-start; flex-wrap: wrap; }
+    .chev { display: none; }
+    .date b { font-size: 34px; }
+    .day-body { grid-template-columns: minmax(0, 1fr); padding: 18px 14px 20px; gap: 6px; }
+    .video-grid, .profile-grid { grid-template-columns: minmax(0, 1fr); }
+    .video-grid video { max-width: 340px; margin: 0 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Kit Instagram · Cameroun · 23 nov → 6 déc 2026</div>
+    <h1>14 jours pour vendre <em>avec la vidéo.</em></h1>
+    <p class="lead" id="lead"></p>
+    <div class="stats" id="stats"></div>
+    <nav class="jump" aria-label="Sections">
+      <a href="#calendrier">Calendrier</a><a href="#video">Vidéo motion design</a><a href="#carrousels">Carrousels</a><a href="#profil">Ton profil</a><a href="#regles">Règles du jeu</a><a href="#messages">Messages prêts</a>
+    </nav>
+  </header>
+
+  <section id="strategie">
+    <div class="sec-head"><div class="eyebrow">Stratégie</div><h2>L'esprit Kallaway, <em>version Mboa.</em></h2><p id="cible"></p></div>
+    <div class="cols">
+      <div><div class="lbl" style="margin-bottom:10px">Les 4 piliers</div><div class="deflist" id="piliers"></div></div>
+      <div><div class="lbl" style="margin-bottom:10px">Ce qu'on reprend de son style</div><div class="deflist" id="emprunts"></div></div>
+    </div>
+  </section>
+
+  <section id="calendrier">
+    <div class="sec-head"><div class="eyebrow">Calendrier</div><h2>Un post par jour, <em>14 jours.</em></h2><p>Touche un jour pour voir le hook, le script, la légende prête à copier et la story. Les jours marqués « Prêt à poster » ont leurs fichiers dans le kit.</p></div>
+    <div id="weeks"></div>
+  </section>
+
+  <section id="video">
+    <div class="sec-head"><div class="eyebrow">Jour 1 · prêt à poster</div><h2>Ta vidéo a 3 secondes <em>pour survivre.</em></h2></div>
+    <div class="video-grid">
+      <video controls playsinline preload="metadata" poster="img/reels/cover-j01.jpg" src="video/reel-j01-3-secondes.mp4"></video>
+      <div>
+        <div class="spec"><span class="chip type">36 s</span><span class="chip">1080 × 1920</span><span class="chip">30 i/s</span><span class="chip">H.264 + AAC</span><span class="chip">Effets sonores inclus</span></div>
+        <div class="lbl" style="margin-bottom:6px">Pour la publier</div>
+        <ol class="steps">
+          <li><span>Importe <code style="font-family:var(--mono);font-size:13px;word-break:break-all">reel-j01-3-secondes.mp4</code> comme Reel.</span></li>
+          <li><span>Ajoute un son tendance de la bibliothèque Instagram, à 10–15 % du volume : les effets sonores restent audibles.</span></li>
+          <li><span>Choisis la couverture <code style="font-family:var(--mono);font-size:13px;word-break:break-all">cover-j01.png</code> (« Ajouter depuis la galerie »).</span></li>
+          <li><span>Colle la légende du jour 1 et publie lundi à 19h30. Puis épingle le Reel sur ton profil.</span></li>
+        </ol>
+        <details class="more"><summary>Voix off optionnelle, à enregistrer avec ta voix</summary><div class="vo" id="vo"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="carrousels">
+    <div class="sec-head"><div class="eyebrow">4 carrousels · prêts à poster</div><h2>Les slides, <em>dans l'ordre.</em></h2><p>Format portrait 1080 × 1350, le plus grand qu'Instagram affiche dans le fil. Fais glisser chaque bande pour voir toutes les slides.</p></div>
+    <div id="cars"></div>
+  </section>
+
+  <section id="profil">
+    <div class="sec-head"><div class="eyebrow">Ton profil</div><h2>À quoi ressemblera ta grille <em>au jour 14.</em></h2><p>Mêmes couleurs, même typo, mêmes couvertures : c'est ce qui donne l'aspect premium d'un coup d'œil.</p></div>
+    <div class="profile-grid">
+      <div class="phone" aria-label="Aperçu du profil">
+        <div class="p-head"><div class="avatar">M</div><div><div class="p-name">ton.compte</div><div class="p-nums"><span><b>14</b> publications</span></div></div></div>
+        <div class="p-bio" id="pbio"></div>
+        <div class="p-hl" id="phl"></div>
+        <div class="tiles" id="tiles"></div>
+      </div>
+      <div id="profil-details"></div>
+    </div>
+  </section>
+
+  <section id="regles">
+    <div class="sec-head"><div class="eyebrow">Règles du jeu</div><h2>Ce qui fait la différence <em>après la publication.</em></h2></div>
+    <div class="rules" id="rules"></div>
+  </section>
+
+  <section id="messages">
+    <div class="sec-head"><div class="eyebrow">Messages prêts</div><h2>À envoyer à ceux qui commentent <em>« SCRIPT ».</em></h2><p>Le carrousel du jour 9 promet ce modèle en DM. Copie-le, colle-le, personnalise la dernière ligne.</p></div>
+    <div class="dm"><pre id="dm"></pre><button class="copy" type="button" data-copy="dm" style="margin-top:12px">Copier le message</button></div>
+  </section>
+
+  <footer>
+    Fichiers originaux pour la publication (PNG 1080 × 1350, couvertures 1080 × 1920, MP4) : dossier <code>instagram-mboa/out/</code> du dépôt <code>editing</code>, branche <code>claude/vigilant-galileo-q46bas</code>. Le calendrier complet est aussi dans <code>CALENDRIER.md</code>.
+  </footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const CAR = { 2: "c1-hooks", 5: "c2-formats", 9: "c3-anatomie", 12: "c4-systeme" };
+const SLIDES = { "c1-hooks": 11, "c2-formats": 10, "c3-anatomie": 10, "c4-systeme": 10 };
+const thumb = (j) => CAR[j.n] ? `img/${CAR[j.n]}/01.jpg` : `img/reels/cover-j${String(j.n).padStart(2, "0")}.jpg`;
+const range = (n) => Array.from({ length: n }, (_, i) => String(i + 1).padStart(2, "0"));
+const CLIP = {};
+
+$("lead").textContent = DATA.strategie.positionnement;
+$("cible").textContent = "Pour qui : " + DATA.strategie.cible;
+const ready = DATA.jours.filter((j) => j.statut === "pret").length;
+$("stats").innerHTML = `
+  <span class="stat"><span class="dot"></span><b>${ready}</b> posts prêts à poster</span>
+  <span class="stat"><span class="dot todo"></span><b>${14 - ready}</b> Reels à tourner, scripts fournis</span>
+  <span class="stat"><b>${DATA.jours.filter((j) => j.type === "Reel").length}</b> Reels · <b>4</b> carrousels</span>`;
+$("piliers").innerHTML = DATA.strategie.piliers.map(([a, b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("");
+$("emprunts").innerHTML = DATA.strategie.emprunts.map(([a, b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("");
+
+const CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
+function dayHTML(j) {
+  const [wd, dn, mo] = j.date.split(" ");
+  CLIP["cap" + j.n] = j.legende + "\n\n" + j.hashtags;
+  let assets = "";
+  if (CAR[j.n]) {
+    const c = CAR[j.n];
+    assets = `<div class="asset-row">${range(SLIDES[c]).map((n) => `<img loading="lazy" src="img/${c}/${n}.jpg" alt="Slide ${+n}">`).join("")}</div>
+      <div class="asset-note">Fichiers : <code>${esc(j.assets.carousel)}/01.png → ${String(SLIDES[c]).padStart(2, "0")}.png</code></div>`;
+  } else if (j.assets.video) {
+    assets = `<div class="asset-note">Vidéo prête : <code>${esc(j.assets.video)}</code> · <a href="#video">la regarder</a></div>`;
+  } else if (j.assets.cover) {
+    assets = `<div class="asset-note">Couverture prête : <code>${esc(j.assets.cover)}</code></div>`;
+  }
+  return `<details class="day"${j.n === 1 ? " open" : ""}>
+    <summary>
+      <div class="date"><small>${esc(wd.slice(0, 3))}</small><b>${esc(dn)}</b><small>${esc(mo.slice(0, 3))}.</small></div>
+      <div class="sum-main"><div class="chips"><span class="chip type">${esc(j.format)}</span><span class="chip">${esc(j.pilier)}</span></div><h4>${esc(j.titre)}</h4></div>
+      <div class="sum-meta"><span class="time">${esc(j.heure)}</span><span class="status ${j.statut}">${j.statut === "pret" ? "Prêt à poster" : "À tourner"}</span>${CHEV}</div>
+    </summary>
+    <div class="day-body">
+      ${assets}
+      <div>
+        <div class="block"><div class="lbl">Hook</div>
+          ${j.hook.dit ? `<div class="hookline"><span class="lbl">Tu dis</span><span>${esc(j.hook.dit)}</span></div>` : ""}
+          <div class="hookline"><span class="lbl">Écran</span><span><b>${esc(j.hook.ecran)}</b></span></div>
+          <div class="hookline"><span class="lbl">Visuel</span><span>${esc(j.hook.visuel)}</span></div>
+        </div>
+        <div class="block"><div class="lbl">${j.type === "Carrousel" ? "Déroulé" : "Script"}</div>
+          <div class="beats">${j.beats.map(([t, b]) => `<div><b>${esc(t)}</b><span>${esc(b)}</span></div>`).join("")}</div>
+        </div>
+        <div class="block"><div class="lbl">Objectif</div><div class="note">${esc(j.objectif)}</div></div>
+      </div>
+      <div>
+        <div class="block"><div class="lbl">Légende</div>
+          <div class="caption">${esc(j.legende)}<span class="tags">${esc(j.hashtags)}</span></div>
+          <button class="copy" type="button" data-copy="cap${j.n}">Copier la légende</button>
+        </div>
+        <div class="block"><div class="lbl">Story du jour</div><div class="note">${esc(j.story)}</div></div>
+        <div class="block"><div class="lbl">Production</div><div class="note">${esc(j.prod)}</div></div>
+        <div class="block"><div class="lbl">Technique</div><div class="note">${esc(j.inspi)}</div></div>
+      </div>
+    </div>
+  </details>`;
+}
+const WEEKS = [["Semaine 1", "Les 3 premières secondes"], ["Semaine 2", "Des vues aux clients"]];
+$("weeks").innerHTML = WEEKS.map(([w, t], i) => `<div class="week"><div class="week-title"><span class="eyebrow">${w}</span><h3>${t}</h3></div>${DATA.jours.slice(i * 7, i * 7 + 7).map(dayHTML).join("")}</div>`).join("");
+
+$("vo").innerHTML = DATA.vo.map(([t, v]) => `<div><b>${esc(t)}</b><span>${esc(v)}</span></div>`).join("");
+
+$("cars").innerHTML = Object.entries(CAR).map(([d, c]) => {
+  const j = DATA.jours.find((x) => x.n === +d);
+  return `<div class="car"><div class="car-head"><h3>${esc(j.titre)}</h3><span class="lbl">Jour ${d} · ${esc(j.date)} · ${SLIDES[c]} slides</span></div>
+    <div class="strip" tabindex="0" aria-label="Slides : ${esc(j.titre)}">${range(SLIDES[c]).map((n) => `<img loading="lazy" src="img/${c}/${n}.jpg" alt="${esc(j.titre)}, slide ${+n}">`).join("")}</div></div>`;
+}).join("");
+
+// Grille du profil : 3 posts épinglés, puis du plus récent au plus ancien.
+const PIN = '<svg class="pin" viewBox="0 0 24 24" fill="#fff"><path d="M15 3l6 6-3 1-4 4 1 5-2 2-4-4-5 5-1-1 5-5-4-4 2-2 5 1 4-4z"/></svg>';
+const REEL = '<svg class="kind" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M10 9v6l5-3z" fill="#fff"/></svg>';
+const MULTI = '<svg class="kind" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M3 17V5a2 2 0 0 1 2-2h12"/></svg>';
+const pinned = [1, 2, 10];
+const order = [...pinned, ...DATA.jours.map((j) => j.n).filter((n) => !pinned.includes(n)).reverse()];
+$("tiles").innerHTML = order.map((n) => {
+  const j = DATA.jours.find((x) => x.n === n);
+  return `<div class="tile"><img loading="lazy" src="${thumb(j)}" alt="Jour ${n} : ${esc(j.titre)}">${pinned.includes(n) ? PIN : j.type === "Reel" ? REEL : MULTI}</div>`;
+}).join("") + `<div class="tile"></div>`;
+$("pbio").textContent = DATA.profil.bios[0];
+$("phl").innerHTML = DATA.profil.alaune.map(([a, f]) => `<figure><img src="img/hl/${f.replace(".png", ".jpg")}" alt=""><figcaption>${esc(a)}</figcaption></figure>`).join("");
+CLIP.bioA = DATA.profil.bios[0]; CLIP.bioB = DATA.profil.bios[1]; CLIP.nom = DATA.profil.nom;
+$("profil-details").innerHTML = `
+  <div class="bio-card"><div class="lbl">Nom (indexé par la recherche)</div><pre>${esc(DATA.profil.nom)}</pre><div class="note" style="color:var(--mute)">${esc(DATA.profil.nomNote)}</div><button class="copy" type="button" data-copy="nom">Copier</button></div>
+  <div class="bio-card"><div class="lbl">Bio · option A</div><pre>${esc(DATA.profil.bios[0])}</pre><button class="copy" type="button" data-copy="bioA">Copier</button></div>
+  <div class="bio-card"><div class="lbl">Bio · option B</div><pre>${esc(DATA.profil.bios[1])}</pre><button class="copy" type="button" data-copy="bioB">Copier</button></div>
+  <div class="deflist" style="margin-top:20px">
+    <div><b>Lien</b><span>${esc(DATA.profil.lien)}</span></div>
+    <div><b>Photo</b><span>${esc(DATA.profil.photo)}</span></div>
+    <div><b>Stories à la une</b><span>${DATA.profil.alaune.map(([a, , b]) => `${esc(a)} : ${esc(b)}`).join("<br>")}</span></div>
+    <div><b>Posts épinglés</b><span>${DATA.profil.epingles.map(esc).join("<br>")}</span></div>
+  </div>`;
+$("rules").innerHTML = DATA.regles.map(([a, b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("");
+$("dm").textContent = DATA.dm; CLIP.dm = DATA.dm;
+
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-copy]");
+  if (!b) return;
+  const text = CLIP[b.dataset.copy], label = b.textContent;
+  const done = (msg) => { b.textContent = msg; setTimeout(() => (b.textContent = label), 1600); };
+  navigator.clipboard.writeText(text).then(() => done("Copié"), () => {
+    const box = b.parentElement.querySelector(".caption, pre");
+    if (box) { const r = document.createRange(); r.selectNodeContents(box); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    done("Sélectionné : copie avec ton clavier");
+  });
+});
+</script>

@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel 01 · 3 secondes</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Zone sûre Instagram : texte entre y 250 et 1560, x 90 à 990. */
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden;
+    background: radial-gradient(120% 60% at 85% 8%, #18235A 0%, var(--ink) 60%); }
+  #stage > .ndop { opacity: 0.08; -webkit-mask-image: radial-gradient(90% 55% at 100% 0%, #000 0%, transparent 100%); }
+  .scene { position: absolute; inset: 0; visibility: hidden; }
+  .w { display: inline-block; }
+  .mono { font-family: var(--mono); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+
+  /* S1 — Hook */
+  #s1 .line { position: absolute; left: 0; right: 0; text-align: center; font-weight: 800; letter-spacing: -0.04em; }
+  .s1-l1 { top: 300px; font-size: 128px; }
+  .ring-wrap { position: absolute; left: 260px; top: 470px; width: 560px; height: 560px; }
+  .ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 18; }
+  .ring .track { stroke: rgba(243,241,236,0.1); }
+  .ring .prog { stroke: var(--gold); stroke-linecap: round; }
+  .count span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 430px; line-height: 1; padding-bottom: 30px; visibility: hidden; }
+  .s1-l2 { top: 1070px; font-size: 128px; }
+  .s1-l3 { top: 1200px; font-size: 150px; }
+
+  /* S2 — Le problème */
+  .s2-title { position: absolute; left: 90px; right: 90px; top: 250px; font-weight: 800; font-size: 76px; line-height: 1.04; letter-spacing: -0.035em; text-align: center; text-wrap: balance; }
+  .phone { position: absolute; left: 250px; top: 500px; width: 580px; height: 1040px; border-radius: 76px; background: #050816; border: 14px solid #232F63; box-shadow: 0 40px 120px rgba(0,0,0,0.55); }
+  .screen { position: absolute; inset: 0; border-radius: 62px; overflow: hidden; }
+  .feed { position: absolute; left: 0; top: 0; width: 100%; height: 200%; }
+  .post { position: relative; height: 50%; overflow: hidden; }
+  .wax { position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, #F2B705 0 20px, #0E7C66 21px 38px, #F3F1EC 39px 44px, transparent 45px) 0 0 / 132px 132px,
+      radial-gradient(circle at 50% 50%, #E5533D 0 12px, #F3F1EC 13px 18px, transparent 19px) 66px 66px / 132px 132px,
+      #7A1F33; }
+  .wax::after { content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(100deg, rgba(0,0,0,0) 0 90px, rgba(0,0,0,0.28) 140px, rgba(0,0,0,0) 200px),
+                linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.75) 100%); }
+  .wax2 { background:
+      radial-gradient(circle at 50% 50%, #F3F1EC 0 16px, #1B2A6B 17px 34px, transparent 35px) 0 0 / 120px 120px,
+      #0E7C66; filter: blur(3px); }
+  .cap { position: absolute; left: 40px; right: 120px; bottom: 120px; font-weight: 700; font-size: 38px; line-height: 1.25; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.6); min-height: 96px; }
+  .caret { display: inline-block; width: 4px; height: 40px; background: #fff; vertical-align: -6px; margin-left: 4px; }
+  .user { position: absolute; left: 40px; bottom: 60px; font-weight: 700; font-size: 28px; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 14px; }
+  .user i { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); display: block; }
+  .ui { position: absolute; right: 26px; bottom: 140px; display: flex; flex-direction: column; gap: 36px; }
+  .ui svg { width: 58px; height: 58px; }
+  .finger { position: absolute; left: 500px; top: 1300px; width: 96px; height: 96px; border-radius: 50%; background: rgba(243,241,236,0.45); border: 4px solid rgba(243,241,236,0.9); visibility: hidden; }
+  .stamp { position: absolute; left: 0; right: 0; top: 880px; margin: 0 auto; width: max-content; font-weight: 900; font-size: 150px; letter-spacing: -0.02em; text-transform: uppercase; color: var(--red); border: 12px solid var(--red); border-radius: 28px; padding: 6px 40px 14px; background: rgba(10,15,36,0.82); visibility: hidden; }
+
+  /* S3 — Bascule */
+  #s3 { display: flex; flex-direction: column; justify-content: center; gap: 70px; padding: 0 90px; }
+  .s3-a { font-weight: 800; font-size: 104px; line-height: 1.04; letter-spacing: -0.04em; }
+  .strike { position: relative; display: inline-block; }
+  .strike i { position: absolute; left: -6px; right: -6px; top: 54%; height: 14px; background: var(--red); border-radius: 8px; transform-origin: 0 50%; }
+  .s3-b { font-weight: 800; font-size: 104px; line-height: 1.04; letter-spacing: -0.04em; position: relative; }
+  .s3-b em { font-size: 1.32em; }
+  .uline { position: absolute; left: 0; width: 860px; bottom: -34px; height: 12px; background: var(--gold); border-radius: 8px; transform-origin: 0 50%; }
+
+  /* S4 — La formule */
+  .s4-label { position: absolute; left: 90px; right: 90px; top: 370px; font-size: 34px; text-align: center; }
+  .cards { position: absolute; left: 90px; right: 90px; top: 470px; display: flex; flex-direction: column; align-items: stretch; }
+  .card { display: flex; align-items: center; gap: 44px; padding: 40px 48px; border-radius: 40px; background: var(--ink-2); border: 4px solid var(--line); }
+  .card b { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--gold); font-size: 170px; line-height: 0.8; width: 170px; flex: none; }
+  .card h3 { font-weight: 800; font-size: 96px; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase; }
+  .card p { font-size: 44px; line-height: 1.25; color: rgba(243,241,236,0.82); margin-top: 14px; }
+  .conn { width: 8px; height: 70px; margin: 0 auto; background: var(--gold); border-radius: 4px; transform-origin: 50% 0; }
+
+  /* S5 — Exemple */
+  .s5-label { position: absolute; left: 90px; right: 90px; top: 260px; font-size: 32px; }
+  .blk { position: absolute; left: 90px; right: 90px; }
+  .pill { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 32px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 26px; border-radius: 999px; color: var(--ink); }
+  .pill.red { background: var(--red); color: var(--paper); }
+  .pill.green { background: var(--green); }
+  .before { top: 350px; }
+  .before .q { margin-top: 26px; font-family: var(--serif); font-style: italic; font-size: 62px; line-height: 1.12; color: var(--mute); position: relative; }
+  .before .x { position: absolute; left: -10px; right: -10px; height: 12px; top: 48%; background: var(--red); border-radius: 6px; transform-origin: 0 50%; transform: rotate(-4deg); }
+  .after { top: 720px; }
+  .after .a { margin-top: 26px; font-weight: 800; font-size: 70px; line-height: 1.12; letter-spacing: -0.03em; }
+  .seg { background-repeat: no-repeat; background-size: 0% 100%; -webkit-box-decoration-break: clone; }
+  .g1 { background-image: linear-gradient(transparent 60%, rgba(242,183,5,0.55) 60%, rgba(242,183,5,0.55) 92%, transparent 92%); }
+  .g2 { background-image: linear-gradient(transparent 60%, rgba(229,83,61,0.6) 60%, rgba(229,83,61,0.6) 92%, transparent 92%); }
+  .g3 { background-image: linear-gradient(transparent 60%, rgba(47,179,107,0.6) 60%, rgba(47,179,107,0.6) 92%, transparent 92%); }
+  .chips { display: flex; gap: 18px; margin-top: 40px; }
+  .ch { font-family: var(--mono); font-weight: 700; font-size: 30px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 24px; border-radius: 999px; border: 3px solid; }
+  .ch.h1 { color: var(--gold); border-color: var(--gold); }
+  .ch.h2 { color: var(--red); border-color: var(--red); }
+  .ch.h3 { color: var(--green); border-color: var(--green); }
+  .s5-end { position: absolute; left: 90px; right: 90px; top: 1400px; font-weight: 800; font-size: 66px; line-height: 1.08; letter-spacing: -0.03em; }
+
+  /* S6 — Appel à l'action */
+  .bm { position: absolute; left: 430px; top: 330px; width: 220px; height: 280px; }
+  .bm svg { width: 100%; height: 100%; overflow: visible; }
+  .s6-a { position: absolute; left: 90px; right: 90px; top: 700px; text-align: center; font-weight: 800; font-size: 132px; line-height: 0.98; letter-spacing: -0.045em; }
+  .s6-b { position: absolute; left: 90px; right: 90px; top: 1060px; text-align: center; font-weight: 800; font-size: 74px; line-height: 1.1; letter-spacing: -0.03em; }
+  .s6-b em { font-size: 1.2em; }
+  .s6-c { position: absolute; left: 90px; right: 90px; top: 1290px; text-align: center; font-size: 34px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="ndop" id="ndop"></div><div class="vignette"></div><div class="grain" id="grain"></div>
+
+  <section id="s1" class="scene">
+    <div class="line s1-l1">Ta vidéo a</div>
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 600 600"><circle class="track" cx="300" cy="300" r="280"/><circle class="prog" cx="300" cy="300" r="280"/></svg>
+      <div class="count"><span data-n="3">3</span><span data-n="2">2</span><span data-n="1">1</span></div>
+    </div>
+    <div class="line s1-l2">secondes</div>
+    <div class="line s1-l3"><em>pour survivre.</em></div>
+  </section>
+
+  <section id="s2" class="scene">
+    <div class="s2-title" data-split>La plupart des vidéos commencent comme&nbsp;ça&#8239;:</div>
+    <div class="phone"><div class="screen"><div class="feed">
+      <div class="post"><div class="wax"></div>
+        <div class="ui">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-3.2-6.4L20 4.5l-.6 4A8 8 0 0 1 20 12z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M21 3 10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></svg>
+        </div>
+        <div class="cap"><span id="typed"></span><i class="caret" id="caret"></i></div>
+        <div class="user"><i></i>ma_boutique_douala</div>
+      </div>
+      <div class="post"><div class="wax wax2"></div></div>
+    </div></div></div>
+    <div class="finger"></div>
+    <div class="stamp">Scrollé.</div>
+  </section>
+
+  <section id="s3" class="scene">
+    <div class="s3-a" data-split>Le problème n'est pas <span class="strike w">ton produit.<i></i></span></div>
+    <div class="s3-b"><span data-split>C'est ta</span><br><em class="w">première phrase.</em><i class="uline"></i></div>
+  </section>
+
+  <section id="s4" class="scene">
+    <div class="s4-label mono">La formule en 3 temps</div>
+    <div class="cards">
+      <div class="card" id="c1"><b>01</b><div><h3>Sujet</h3><p>Dis de quoi tu parles. Tout de suite.</p></div></div>
+      <div class="conn" id="k1"></div>
+      <div class="card" id="c2"><b>02</b><div><h3>Tension</h3><p>Ajoute un «&#8239;mais&#8239;».</p></div></div>
+      <div class="conn" id="k2"></div>
+      <div class="card" id="c3"><b>03</b><div><h3>Promesse</h3><p>Dis ce qu'on gagne à rester.</p></div></div>
+    </div>
+  </section>
+
+  <section id="s5" class="scene">
+    <div class="s5-label mono">Exemple · une vendeuse de pagnes</div>
+    <div class="blk before"><span class="pill red">Avant</span>
+      <p class="q">«&#8239;Bonjour à tous, aujourd'hui je vous présente mes nouveaux pagnes…&#8239;»<i class="x"></i></p></div>
+    <div class="blk after"><span class="pill green">Après</span>
+      <p class="a"><span class="seg g1">Ce pagne coûte 8&#8239;000&nbsp;FCFA à&nbsp;Mboppi…</span> <span class="seg g2">mais ce n'est pas pour ça que mes clientes reviennent.</span> <span class="seg g3">Regarde la&nbsp;finition.</span></p>
+      <div class="chips"><span class="ch h1">Sujet</span><span class="ch h2">Tension</span><span class="ch h3">Promesse</span></div>
+    </div>
+    <div class="s5-end">Même produit.<br><em>Autre première phrase.</em></div>
+  </section>
+
+  <section id="s6" class="scene">
+    <div class="bm"><svg viewBox="0 0 22 28">
+      <defs><clipPath id="bmclip"><path d="M2 2h18v24l-9-6.5L2 26z"/></clipPath></defs>
+      <rect class="fill" x="0" y="0" width="22" height="28" fill="#F2B705" clip-path="url(#bmclip)"/>
+      <path d="M2 2h18v24l-9-6.5L2 26z" fill="none" stroke="#F2B705" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg></div>
+    <div class="s6-a" data-split>Enregistre cette vidéo.</div>
+    <div class="s6-b">Partie 2&#8239;: les hooks <em>visuels.</em></div>
+    <div class="s6-c mono">Abonne-toi pour ne pas la rater</div>
+  </section>
+</div>
+
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+// Découpe en mots pour les animations mot à mot.
+document.querySelectorAll("[data-split]").forEach((el) => {
+  [...el.childNodes].forEach((n) => {
+    if (n.nodeType !== 3) return;
+    const frag = document.createDocumentFragment();
+    n.textContent.split(/( )/).forEach((p) => {
+      if (p === " ") frag.appendChild(document.createTextNode(" "));
+      else if (p) { const s = document.createElement("span"); s.className = "w"; s.textContent = p; frag.appendChild(s); }
+    });
+    n.replaceWith(frag);
+  });
+});
+
+const FPS = 30, DURATION = 36;
+const CUES = [];
+const cue = (t, type, gain = 1) => CUES.push({ t: +t.toFixed(3), type, gain });
+const C = 2 * Math.PI * 280;
+const TYPED = "Bonjour à tous, bienvenue sur ma page…";
+const TYPE_START = 4.0, TYPE_DUR = 2.0;
+
+const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+const show = (sel, t) => tl.set(sel, { visibility: "visible", opacity: 1 }, t);
+const hide = (sel, t) => tl.set(sel, { visibility: "hidden" }, t);
+
+// ── S1 · Hook (0 → 3.4 s)
+show("#s1", 0);
+tl.set(".ring .prog", { strokeDasharray: C, strokeDashoffset: 0 }, 0);
+tl.from(".s1-l1", { y: 90, opacity: 0, duration: 0.45 }, 0);
+tl.from(".ring-wrap", { scale: 0.55, opacity: 0, duration: 0.6, ease: "back.out(1.6)" }, 0.06);
+tl.from(".s1-l2", { y: 90, opacity: 0, duration: 0.45 }, 0.2);
+tl.from(".s1-l3", { y: 90, opacity: 0, duration: 0.5 }, 0.34);
+tl.to(".ring .prog", { strokeDashoffset: C, duration: 3.0, ease: "none" }, 0);
+[["3", 0], ["2", 1], ["1", 2]].forEach(([n, t]) => {
+  tl.set(`.count [data-n="${n}"]`, { visibility: "visible" }, t);
+  tl.fromTo(`.count [data-n="${n}"]`, { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, t);
+  if (t > 0) tl.set(`.count [data-n="${+n + 1}"]`, { visibility: "hidden" }, t);
+  cue(t, "tick");
+});
+tl.to(".ring .track", { stroke: "rgba(229,83,61,0.5)", duration: 0.2 }, 2.8);
+tl.to("#s1", { yPercent: -100, duration: 0.5, ease: "power3.in" }, 3.0);
+cue(3.0, "whoosh");
+hide("#s1", 3.5);
+
+// ── S2 · Le problème (3.1 → 8.7 s)
+show("#s2", 3.1);
+tl.fromTo("#s2", { yPercent: 100 }, { yPercent: 0, duration: 0.6 }, 3.15);
+tl.from("#s2 .s2-title .w", { y: 40, opacity: 0, stagger: 0.04, duration: 0.4 }, 3.5);
+for (let i = 0; i < TYPED.length; i++) if (TYPED[i] !== " " && i % 2 === 0) cue(TYPE_START + (TYPE_DUR * i) / TYPED.length, "key", 0.8);
+tl.set(".finger", { visibility: "visible" }, 6.45);
+tl.fromTo(".finger", { opacity: 0, y: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.18 }, 6.45);
+tl.to(".finger", { y: -520, duration: 0.45, ease: "power2.inOut" }, 6.62);
+tl.to(".finger", { opacity: 0, duration: 0.15 }, 7.02);
+tl.to(".feed", { yPercent: -50, duration: 0.45, ease: "power2.inOut" }, 6.67);
+cue(6.67, "swipe");
+tl.set(".stamp", { visibility: "visible" }, 7.1);
+tl.fromTo(".stamp", { scale: 2.4, opacity: 0, rotation: -16 }, { scale: 1, opacity: 1, rotation: -8, duration: 0.26, ease: "power4.in" }, 7.1);
+cue(7.36, "thud");
+tl.fromTo(".phone", { x: 0 }, { keyframes: [{ x: 14, duration: 0.04 }, { x: -12, duration: 0.05 }, { x: 8, duration: 0.05 }, { x: 0, duration: 0.06 }], ease: "none" }, 7.36);
+tl.to("#s2", { opacity: 0, scale: 0.92, duration: 0.4, ease: "power2.in" }, 8.3);
+cue(8.3, "whoosh", 0.6);
+hide("#s2", 8.7);
+
+// ── S3 · Bascule (8.7 → 11.7 s)
+show("#s3", 8.7);
+tl.from("#s3 .s3-a .w", { y: 70, opacity: 0, stagger: 0.06, duration: 0.42 }, 8.72);
+tl.fromTo(".strike i", { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power2.inOut" }, 9.65);
+tl.to(".strike", { color: "#9AA3C2", duration: 0.3 }, 9.75);
+cue(9.65, "swipe", 0.5);
+tl.from("#s3 .s3-b .w", { y: 70, opacity: 0, stagger: 0.08, duration: 0.45 }, 10.1);
+cue(10.25, "pop");
+tl.fromTo(".uline", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 10.55);
+tl.to("#s3", { opacity: 0, y: -70, duration: 0.35, ease: "power2.in" }, 11.35);
+cue(11.35, "whoosh", 0.6);
+hide("#s3", 11.7);
+
+// ── S4 · La formule (11.7 → 21.6 s)
+show("#s4", 11.7);
+tl.from(".s4-label", { y: 30, opacity: 0, duration: 0.4 }, 11.72);
+tl.set(".card, .conn", { opacity: 0 }, 11.7);
+[["#c1", 12.0], ["#c2", 14.9], ["#c3", 17.8]].forEach(([id, t], i) => {
+  if (i > 0) {
+    const k = `#k${i}`;
+    tl.set(k, { opacity: 1 }, t - 0.3);
+    tl.fromTo(k, { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "power2.out" }, t - 0.3);
+    tl.to(i === 1 ? "#c1" : "#c1, #c2", { opacity: 0.38, borderColor: "rgba(243,241,236,0.14)", backgroundColor: "#121A3B", duration: 0.3 }, t);
+  }
+  tl.fromTo(id, { x: 180, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55 }, t);
+  tl.to(id, { borderColor: "#F2B705", backgroundColor: "#1C2756", duration: 0.3 }, t + 0.15);
+  cue(t, "pop");
+});
+tl.to(".card", { opacity: 1, duration: 0.3 }, 20.3);
+tl.to(".card", { scale: 1.03, duration: 0.18, yoyo: true, repeat: 1, stagger: 0.1, ease: "power1.inOut" }, 20.3);
+cue(20.3, "ding", 0.5);
+tl.to("#s4", { opacity: 0, scale: 0.95, duration: 0.35, ease: "power2.in" }, 21.25);
+cue(21.25, "whoosh", 0.6);
+hide("#s4", 21.6);
+
+// ── S5 · Exemple (21.6 → 31.1 s)
+show("#s5", 21.6);
+tl.from(".s5-label", { y: 30, opacity: 0, duration: 0.4 }, 21.62);
+tl.from(".before", { y: 50, opacity: 0, duration: 0.45 }, 21.85);
+cue(21.85, "pop", 0.6);
+tl.fromTo(".before .x", { scaleX: 0 }, { scaleX: 1, duration: 0.32, ease: "power2.inOut" }, 23.5);
+tl.to(".before", { opacity: 0.4, duration: 0.3 }, 23.75);
+cue(23.5, "buzz");
+tl.from(".after .pill", { scale: 0.5, opacity: 0, duration: 0.35, ease: "back.out(2)" }, 24.05);
+tl.set(".seg, .ch", { opacity: 0 }, 21.6);
+[[".g1", ".h1", 24.3], [".g2", ".h2", 25.9], [".g3", ".h3", 27.7]].forEach(([g, h, t]) => {
+  tl.fromTo(g, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t);
+  tl.to(g, { backgroundSize: "100% 100%", duration: 0.6, ease: "power2.inOut" }, t + 0.25);
+  tl.fromTo(h, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, t + 0.45);
+  cue(t, "pop", 0.7);
+});
+tl.from(".s5-end", { y: 40, opacity: 0, duration: 0.5 }, 29.2);
+cue(29.2, "ding", 0.45);
+tl.to("#s5", { opacity: 0, duration: 0.35, ease: "power2.in" }, 30.75);
+cue(30.75, "whoosh", 0.6);
+hide("#s5", 31.1);
+
+// ── S6 · Appel à l'action (31.1 → 36 s), se termine sur le fond vide pour boucler proprement
+show("#s6", 31.1);
+tl.from(".bm", { scale: 0.4, opacity: 0, duration: 0.5, ease: "back.out(1.8)" }, 31.15);
+tl.from("#s6 .s6-a .w", { y: 70, opacity: 0, stagger: 0.07, duration: 0.45 }, 31.3);
+tl.fromTo(".bm .fill", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.35, ease: "power2.out" }, 32.0);
+tl.to(".bm", { keyframes: [{ scale: 1.16, duration: 0.12 }, { scale: 1, duration: 0.25, ease: "back.out(3)" }] }, 32.0);
+cue(32.0, "ding");
+tl.from(".s6-b", { y: 40, opacity: 0, duration: 0.45 }, 32.7);
+cue(32.7, "pop", 0.6);
+tl.from(".s6-c", { y: 30, opacity: 0, duration: 0.4 }, 33.3);
+tl.to("#s6", { opacity: 0, duration: 0.55, ease: "power2.in" }, 35.3);
+hide("#s6", 35.9);
+tl.set({}, {}, DURATION);
+
+const typed = document.getElementById("typed"), caret = document.getElementById("caret");
+const grain = document.getElementById("grain"), ndop = document.getElementById("ndop");
+window.FPS = FPS; window.DURATION = DURATION; window.CUES = CUES;
+window.renderFrame = (f) => {
+  const t = f / FPS;
+  tl.seek(t, false);
+  const p = Math.min(1, Math.max(0, (t - TYPE_START) / TYPE_DUR));
+  typed.textContent = TYPED.slice(0, Math.round(p * TYPED.length));
+  caret.style.opacity = t < TYPE_START + TYPE_DUR ? 1 : Math.floor(t * 2.5) % 2 ? 0 : 1;
+  grain.style.backgroundPosition = `${(f * 37) % 300}px ${(f * 53) % 300}px`;
+  ndop.style.backgroundPosition = `${t * 5}px ${-t * 9}px`;
+};
+document.fonts.ready.then(() => { window.renderFrame(0); document.body.dataset.ready = "1"; });
+</script>
+</body>
+</html>
